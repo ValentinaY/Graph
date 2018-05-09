@@ -20,9 +20,12 @@ int main(){
 	grafo.connectvertex('e','b',2);
 	grafo.draw("graph.txt");
 
-	grafo.deletevertex('a');
+	grafo.deleteedge('a','b',10);
 	grafo.draw("graph.txt");
 	grafo.deletevertex('c');
+	grafo.draw("graph.txt");
+
+
 	printf("Hay %d vertices. \n", grafo.getnvertex() );
 	return 0;
 }

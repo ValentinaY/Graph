@@ -1,3 +1,7 @@
+/**
+@author Valentina Yate
+*/
+
 #ifndef __GRAPH__HXX__
 #define __GRAPH__HXX__
 
@@ -85,11 +89,39 @@ void Graph<T>::deletevertex( T v){
 template<class T >
 void Graph<T>::deleteedge(T a, T b, float w){
 
+	vector< vrt<T> > temp=this->edges[a];
+	
+	int j=0;
+	for(j=0;j<temp.size();j++){
+		if(b==temp.at(j).data && w==temp.at(j).weight){
+			break;
+		}
+	}	
+	this->edges[a].erase(this->edges[a].begin()+j);		
+
+	temp=this->edges[b];
+	j=0;
+	for(j=0;j<temp.size();j++){
+		if(a==temp.at(j).data && w==temp.at(j).weight){
+			break;
+		}
+	}	
+	this->edges[b].erase(this->edges[b].begin()+j);
+	printf("Se ha eliminado la arista.\n");			
 }
 
 template<class T >
 int Graph<T>::hasedge(T a, T b){
-	bool t=true;
+	int t=0;
+
+	vector< vrt<T> > temp=this->edges[a];
+	int i=0;
+	for(i=0; i<temp.size(); i++){
+		if(temp.at(i).data == b ){
+			t++;
+		}
+	}
+
 	return t;
 }
 
