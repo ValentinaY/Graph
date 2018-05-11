@@ -139,7 +139,6 @@ void Graph<T>::dikstra(T a, T b){
 	bool nohaymas=false;
 	int cont=0;
 	while(!end){
-		//printf("Yo soy la data: %c\n",actual);
 		int wayactual=way[actual];
 		int wayoni;
 		for(int i=0; i<temp.size(); i++){
@@ -161,17 +160,15 @@ void Graph<T>::dikstra(T a, T b){
 		}
 		actual=datatemp;
 		temp=this->edges[actual];
-		if(way[b] != 0){
-			printf("Camino encontrado con longitud: %d\n", way[b]);
-			end=true;
-		}
 		if(cont== this->vertex.size()+1){
-			printf("No se encuentra el vertice\n");
+			if ( way[b] == 0)
+				printf("No se encuentra el vertice\n");
+			
 			break;
 		}
 		cont++;
 	}
-
+	printf("Camino encontrado con longitud: %d\n", way[b]);
 }
 
 template<class T >
