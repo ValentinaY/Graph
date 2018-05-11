@@ -10,22 +10,15 @@ int main(){
 	grafo.addvertex('c');
 	grafo.addvertex('d');
 	grafo.addvertex('e');
-	printf("Hay %d vertices. \n", grafo.getnvertex() );
-	grafo.connectvertex('a','b',10);
-	grafo.connectvertex('a','c',8);
-	grafo.connectvertex('a','d',5);
-	grafo.connectvertex('a','d',16);
-	grafo.connectvertex('c','e',1);
-	grafo.connectvertex('c','a',10);
-	grafo.connectvertex('e','b',2);
-	grafo.draw("graph.txt");
-
-	grafo.deleteedge('a','b',10);
-	grafo.draw("graph.txt");
-	grafo.deletevertex('c');
-	grafo.draw("graph.txt");
-
+	grafo.connectvertex('a','b',1);
+	grafo.connectvertex('a','c',3);
+	grafo.connectvertex('b','d',9);
+	grafo.connectvertex('c','d',3);
+	grafo.connectvertex('d','e',2);
+	grafo.dikstra('a','e');
 
 	printf("Hay %d vertices. \n", grafo.getnvertex() );
+	
+	grafo.dikstra('a','m');
 	return 0;
 }

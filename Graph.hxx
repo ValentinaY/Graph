@@ -6,6 +6,7 @@
 #define __GRAPH__HXX__
 
 #include <map>
+#include <queue>
 using namespace std;
 
 template<class T >
@@ -28,7 +29,7 @@ void Graph<T>::addvertex(T v){
 }
 
 template<class T>
-void Graph<T>::connectvertex(T a, T b, float w){
+void Graph<T>::connectvertex(T a, T b, int w){
 int exists=0;
 
 for(int i=0;i<Graph::vertex.size();i++){
@@ -87,7 +88,7 @@ void Graph<T>::deletevertex( T v){
 }
 
 template<class T >
-void Graph<T>::deleteedge(T a, T b, float w){
+void Graph<T>::deleteedge(T a, T b, int w){
 
 	vector< vrt<T> > temp=this->edges[a];
 	
@@ -125,6 +126,54 @@ int Graph<T>::hasedge(T a, T b){
 	return t;
 }
 
+template<class T>
+void Graph<T>::dikstra(T a, T b){
+	std::map<T, bool> used;
+	std::map<T, int > way;
+	vector < vrt<T> > temp;
+
+	T actual=a;
+	temp=this->edges[actual];
+	bool end=false;
+
+	bool nohaymas=false;
+	int cont=0;
+	while(!end){
+		//printf("Yo soy la data: %c\n",actual);
+		int wayactual=way[actual];
+		int wayoni;
+		for(int i=0; i<temp.size(); i++){
+			wayoni=way[temp.at(i).data];
+			if( (wayoni > temp.at(i).weight+way[actual]) || (way[temp.at(i).data] == 0) ) {
+				way[temp.at(i).data]=temp.at(i).weight+way[actual];
+				
+			}
+		}
+		used[actual]=true;
+		typename std::map<T, int >::iterator it;
+		int i= 0xFFFFF;
+		T datatemp;
+		for(it= way.begin();	it!=way.end();	++it){
+			if(it->second != 0 && it->second<i && !used[it->first]){
+				i=it->second;
+				datatemp=it->first;
+			}
+		}
+		actual=datatemp;
+		temp=this->edges[actual];
+		if(way[b] != 0){
+			printf("Camino encontrado con longitud: %d\n", way[b]);
+			end=true;
+		}
+		if(cont== this->vertex.size()+1){
+			printf("No se encuentra el vertice\n");
+			break;
+		}
+		cont++;
+	}
+
+}
+
 template<class T >
 void Graph<T>::draw(std::string filename){
 	T datus;
@@ -143,5 +192,6 @@ void Graph<T>::draw(std::string filename){
 		cout<<endl;
 	}
 }
+
 
 #endif

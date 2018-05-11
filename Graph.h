@@ -10,7 +10,7 @@
 template < class T>
 struct vrt{
 	T data;
-	float weight;
+	int weight;
 };
 
 
@@ -24,12 +24,13 @@ public:
 	~Graph();
 
 	void addvertex(T v);
-	void connectvertex(T a, T b, float w);
+	void connectvertex(T a, T b, int w);
 	long getnvertex();
 	void deletevertex( T v);
-	void deleteedge(T a, T b, float w);
+	void deleteedge(T a, T b, int w);
 	int hasedge(T a, T b);
 	void draw(std::string filename);
+	void dikstra(T a, T b);
 
 protected:
 	std::vector<T> vertex;
