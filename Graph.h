@@ -8,6 +8,12 @@
 #include <vector>
 
 template < class T>
+
+//Se usa una estructura para almacenar los vertices en la matriz. Frecuentemente en los métodos se tratan los puntos aprovechandola.
+/*
+	data: Dato de tipo T en el vértice.
+	weight: Peso en relación con otro vértice.
+*/
 struct vrt{
 	T data;
 	int weight;
